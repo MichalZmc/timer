@@ -1,0 +1,248 @@
+:root {
+  --glass: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.15);
+  --accent: rgb(253,156,67);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #202020, #0b0f14);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.timer {
+  width: 360px;
+  padding: 26px;
+  border-radius: 32px;
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+/* 🔊 sound */
+.sound-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 14px;
+  background: rgba(253,156,67,0.05);
+  border: 2px solid #FD9C43;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.sound-btn:hover { 
+  background: #fd9d432f;
+  border: 2px solid #fd9d432f;
+  color: rgba(253,156,67,1);
+  transform: scale(1.05);
+}
+
+.sound-btn i {
+  color: white;
+  font-size: 15px;
+  display: block;
+  line-height: 1;
+}
+
+.sound-btn:hover i {
+  color: #FD9C43;
+}
+
+/* ⭕ circle */
+.circle-wrapper {
+  width: 220px;
+  height: 220px;
+  margin: 20px auto;
+  position: relative;
+  overflow: visible; /* 🔥 KLUCZ */
+}
+
+svg {
+  transform: rotate(-90deg);
+  overflow: visible; /* 🔥 KLUCZ */
+}
+
+circle {
+  fill: none;
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.bg {
+  stroke: rgba(253,156,67,0.15);
+}
+
+.progress {
+  stroke: var(--accent);
+  stroke-dasharray: 628;
+  stroke-dashoffset: 0;
+
+  /* 🔥 IDEALNIE OKRĄGŁY GLOW */
+  filter:
+    drop-shadow(0 0 8px rgba(253, 156, 67,0.75))
+    drop-shadow(0 0 18px rgba(253, 156, 67,0.45))
+    drop-shadow(0 0 30px rgba(253, 156, 67,0.25));
+
+  transition: stroke-dashoffset 0.4s linear;
+}
+
+/* 🕒 time */
+.time-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: scale(0.82);
+}
+
+.time-box {
+  width: 54px;
+  height: 60px;
+  background: rgba(253, 157, 67, 0.021);
+  border: 2px solid #fd9d4350;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-box input {
+  width: 100%;
+  border: none;
+  background: none;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+  outline: none;
+  line-height: 1;
+}
+
+.time-box .label {
+  font-size: 10px;
+  opacity: 0.6;
+  margin-top: 2px;
+}
+
+.colon {
+  font-size: 26px;
+}
+
+/* 🎛 controls */
+.controls {
+  margin-top: 24px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.main-btn,
+.small-btn {
+  background: rgba(253,156,67,0.05);
+  border: 2px solid #FD9C43;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 18px;
+  transition: transform 0.15s ease;
+}
+
+.main-btn {
+  width: 100%;
+  height: 56px;
+  font-size: 22px;
+}
+
+.small-btn {
+  height: 48px;
+  padding: 0 28px;
+  font-size: 18px;
+}
+
+.main-btn:hover,
+.small-btn:hover {
+  background: #fd9d432f;
+  border: 2px solid #fd9d432f;
+  color: rgba(253,156,67,1);
+  transform: scale(1.05);
+}
+
+#msln-sign {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  font-size: clamp(0.65rem, 2.5vw, 0.8rem);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  user-select: none;
+  max-width: 90vw;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 100; /* zawsze na wierzchu */
+}
+
+#msln-sign .default-text {
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease;
+}
+
+#msln-sign .old {
+  font-family: 'UnifrakturCook', cursive;
+  font-size: 0.9rem;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+#msln-sign .arrow {
+  width: 0.9rem;
+  height: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease;
+  transform: rotate(0deg);
+}
+
+#msln-sign:hover .default-text,
+#msln-sign:hover .arrow {
+  color: #ffffff;
+}
+
+#msln-sign:hover .old {
+  color: #5f9cff;
+}
+
+@media (max-width: 480px) {
+
+  #msln-sign {
+    font-size: 0.65rem;
+    bottom: 0.4rem;
+    right: 0.4rem;
+  }
+}
+

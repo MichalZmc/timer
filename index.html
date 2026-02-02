@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>00:00:00</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+
+<div class="timer">
+
+  <div class="sound-btn" id="soundBtn">
+    <i class="fa-solid fa-volume-high"></i>
+  </div>
+
+
+  <div class="circle-wrapper">
+
+    <svg width="220" height="220">
+      <circle class="bg" cx="110" cy="110" r="100"/>
+      <circle class="progress" cx="110" cy="110" r="100" id="progress"/>
+    </svg>
+
+    <div class="time-display">
+      <div class="time-box">
+        <input id="h" maxlength="2" placeholder="00">
+        <span class="label">H</span>
+      </div>
+
+      <span class="colon">:</span>
+
+      <div class="time-box">
+        <input id="m" maxlength="2" placeholder="00">
+        <span class="label">M</span>
+      </div>
+
+      <span class="colon">:</span>
+
+      <div class="time-box">
+        <input id="s" maxlength="2" placeholder="00">
+        <span class="label">S</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="controls" id="controls"></div>
+
+</div>
+
+  <a id="msln-sign" href="https://t.me/msln777" target="_blank" class="flex items-center gap-1 group">
+  <span class="default-text">stworzone przez</span>
+  <span class="old">@msln</span>
+  <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 17L17 7" />
+    <path d="M7 7h10v10" />
+  </svg>
+</a>
+
+<audio id="alarmSound" src="alarm.mp3"></audio>
+<script src="script.js"></script>
+</body>
+</html>
