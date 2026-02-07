@@ -49,6 +49,10 @@ function formatInputs() {
   i.addEventListener("blur", formatInputs);
 });
 
+handleScrollChange(h, 0, 99);  // godziny
+handleScrollChange(m, 0, 59);  // minuty
+handleScrollChange(s, 0, 59);  // sekundy
+
 function readInput() {
   formatInputs();
   return (
@@ -70,6 +74,23 @@ function onUserEdit() {
     initialTime = 0;
     remainingTime = 0;
   }
+}
+
+function handleScrollChange(input, min, max) {
+  input.addEventListener("wheel", e => {
+    if (running) return;          // ⛔ nie zmieniamy podczas odliczania
+    e.preventDefault();           // ⛔ blokujemy scroll strony
+
+    let value = Number(input.value) || 0;
+
+    if (e.deltaY < 0) value++;    // scroll w górę
+    if (e.deltaY > 0) value--;    // scroll w dół
+
+    value = Math.max(min, Math.min(max, value));
+    input.value = pad(value);
+
+    onUserEdit();                 // resetuje stan timera
+  });
 }
 
 /* ================= CIRCLE ================= */
