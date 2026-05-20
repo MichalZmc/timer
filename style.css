@@ -29,7 +29,6 @@ body {
   position: relative;
 }
 
-/* 🔊 sound */
 .sound-btn {
   position: absolute;
   top: 18px;
@@ -63,18 +62,17 @@ body {
   color: #FD9C43;
 }
 
-/* ⭕ circle */
 .circle-wrapper {
   width: 220px;
   height: 220px;
   margin: 20px auto;
   position: relative;
-  overflow: visible; /* 🔥 KLUCZ */
+  overflow: visible;
 }
 
 svg {
   transform: rotate(-90deg);
-  overflow: visible; /* 🔥 KLUCZ */
+  overflow: visible;
 }
 
 circle {
@@ -92,16 +90,14 @@ circle {
   stroke-dasharray: 628;
   stroke-dashoffset: 0;
 
-  /* 🔥 IDEALNIE OKRĄGŁY GLOW */
   filter:
-    drop-shadow(0 0 8px rgba(253, 156, 67,0.75))
-    drop-shadow(0 0 18px rgba(253, 156, 67,0.45))
-    drop-shadow(0 0 30px rgba(253, 156, 67,0.25));
+    drop-shadow(0 0 8px rgba(253, 156, 67,0.75));
+    /* drop-shadow(0 0 18px rgba(253, 156, 67,0.45))
+    drop-shadow(0 0 30px rgba(253, 156, 67,0.25)); */
 
   transition: stroke-dashoffset 0.4s linear;
 }
 
-/* 🕒 time */
 .time-display {
   position: absolute;
   inset: 0;
@@ -145,7 +141,6 @@ circle {
   font-size: 26px;
 }
 
-/* 🎛 controls */
 .controls {
   margin-top: 24px;
   height: 64px;
@@ -183,7 +178,7 @@ circle {
   background: #fd9d432f;
   border: 2px solid #fd9d432f;
   color: rgba(253,156,67,1);
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
 #msln-sign {
@@ -205,7 +200,7 @@ circle {
   gap: 4px;
   text-decoration: none;
   transition: all 0.3s ease;
-  z-index: 100; /* zawsze na wierzchu */
+  z-index: 100;
 }
 
 #msln-sign .default-text {
