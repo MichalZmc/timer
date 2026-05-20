@@ -16,15 +16,12 @@ let interval = null;
 let running = false;
 let soundOn = true;
 
-let lastSetTime = 0; // 🧠 ostatnio ustawiony czas
+let lastSetTime = 0;
 let initialTime = 0;
 let remainingTime = 0;
 
 const pad = v => String(v).padStart(2, "0");
 
-/* ================= INPUT ================= */
-
-// WALIDACJA podczas pisania (bez formatowania)
 function clampInputs() {
   h.value = h.value.replace(/\D/g, "").slice(0, 2);
   m.value = m.value.replace(/\D/g, "").slice(0, 2);
@@ -34,7 +31,6 @@ function clampInputs() {
   if (+s.value > 59) s.value = "59";
 }
 
-// FORMATOWANIE po wyjściu z pola
 function formatInputs() {
   h.value = pad(Number(h.value) || 0);
   m.value = pad(Number(m.value) || 0);
@@ -44,14 +40,14 @@ function formatInputs() {
 [h, m, s].forEach(i => {
   i.addEventListener("input", e => {
     clampInputs();
-    onUserEdit(); // 🔥 TO JEST KLUCZ
+    onUserEdit();
   });
   i.addEventListener("blur", formatInputs);
 });
 
-handleScrollChange(h, 0, 99);  // godziny
-handleScrollChange(m, 0, 59);  // minuty
-handleScrollChange(s, 0, 59);  // sekundy
+handleScrollChange(h, 0, 99);
+handleScrollChange(m, 0, 59);
+handleScrollChange(s, 0, 59);
 
 function readInput() {
   formatInputs();
@@ -78,30 +74,27 @@ function onUserEdit() {
 
 function handleScrollChange(input, min, max) {
   input.addEventListener("wheel", e => {
-    if (running) return;          // ⛔ nie zmieniamy podczas odliczania
-    e.preventDefault();           // ⛔ blokujemy scroll strony
+    if (running) return;
+    e.preventDefault();
 
     let value = Number(input.value) || 0;
 
-    if (e.deltaY < 0) value++;    // scroll w górę
-    if (e.deltaY > 0) value--;    // scroll w dół
+    if (e.deltaY < 0) value++;
+    if (e.deltaY > 0) value--;
 
     value = Math.max(min, Math.min(max, value));
     input.value = pad(value);
 
-    onUserEdit();                 // resetuje stan timera
+    onUserEdit();
   });
 }
 
-/* ================= CIRCLE ================= */
 
 function updateCircle() {
   if (initialTime === 0) return;
   progress.style.strokeDashoffset =
     CIRC - (remainingTime / initialTime) * CIRC;
 }
-
-/* ================= TIMER CORE ================= */
 
 function tick() {
   remainingTime--;
@@ -112,7 +105,7 @@ function tick() {
     stopInterval();
 
     remainingTime = 0;
-    initialTime = 0; // pozwala ustawić nowy czas
+    initialTime = 0;
 
     writeTime(0);
     progress.style.strokeDashoffset = CIRC;
@@ -173,8 +166,6 @@ function resetTimer() {
   renderBigStart();
 }
 
-/* ================= UI ================= */
-
 function renderBigStart() {
   controls.innerHTML =
     `<button class="main-btn" id="startBtn">START</button>`;
@@ -201,8 +192,6 @@ function renderSmallControls(paused) {
   document.getElementById("resetBtn").onclick = resetTimer;
 }
 
-/* ================= SOUND ================= */
-
 const soundIcon = soundBtn.querySelector("i");
 
 soundBtn.onclick = () => {
@@ -216,8 +205,6 @@ soundBtn.onclick = () => {
     alarm.currentTime = 0;
   }
 };
-
-/* ================= INIT ================= */
 
 writeTime(0);
 renderBigStart();
